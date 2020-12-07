@@ -8,7 +8,15 @@
 <body>
 
 <script>
-    console.log("Would you like to play a game of Rock, Paper, Scissors?");
+    function playGame() {
+        startGame = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (type y or n and Press Enter)");
+        if (startGame !== "y" || startGame !== "n") {
+            console.log("Please type y or n");
+            playGame();
+        } else { console.log("Lets Play!")}
+    }
+
+    playGame();
 </script>
     
 </body>
