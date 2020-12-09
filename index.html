@@ -23,7 +23,15 @@
                 alert("Let's Play");
     }
 
+    function playerThrow() {
+        playerSelection = window.prompt("Please choose rock, paper, or scissors");
+        playerSelection = playerSelection.toLowerCase();
+        alert(playerSelection);
+    }
+
     playGame();
+    playerThrow();
+
 
     
 </script>
