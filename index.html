@@ -9,14 +9,23 @@
 
 <script>
     function playGame() {
-        startGame = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (type y or n and Press Enter)");
-        if (startGame !== "y" || startGame !== "n") {
-            console.log("Please type y or n");
-            playGame();
-        } else { console.log("Lets Play!")}
+        startGame = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (Type y or n and Press Enter)");
+            if ((startGame != "y") && (startGame != "n"))
+             {
+                alert("Please type y or n");
+                playGame();
+            }
+            else if (startGame == "n") {
+                alert("OK, no problem.");
+                playGame();
+            }
+            else
+                alert("Let's Play");
     }
 
     playGame();
+
+    
 </script>
     
 </body>
