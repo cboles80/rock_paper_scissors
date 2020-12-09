@@ -8,29 +8,49 @@
 <body>
 
 <script>
-    function playGame() {
-        startGame = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (Type y or n and Press Enter)");
-            if ((startGame != "y") && (startGame != "n"))
+    console.log('Ready...');
+    let playerThrow = '';
+    let computerThrow = '';
+    let winner = '';
+
+    function startGame() {
+        gameStatus = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (Type y or n and Press Enter)");
+            if ((gameStatus != "y") && (gameStatus != "n"))
              {
                 alert("Please type y or n");
-                playGame();
+                startGame();
             }
             else if (startGame == "n") {
                 alert("OK, no problem.");
-                playGame();
+                startGame();
             }
             else
                 alert("Let's Play");
     }
 
-    function playerThrow() {
+    function getPlayerThrow() {
         playerSelection = window.prompt("Please choose rock, paper, or scissors");
         playerSelection = playerSelection.toLowerCase();
-        alert(playerSelection);
+        return playerSelection;
     }
 
+    function getComputerThrow() {
+        console.log('getComputerThrow');
+    }
+
+    function getWinner() {
+        console.log('winner');
+    }
+
+    function playGame() {
+        playerThrow = getPlayerThrow();
+        alert(playerThrow);
+        computerThrow = getComputerThrow();
+        winner = getWinner();
+    }
+
+    startGame();
     playGame();
-    playerThrow();
 
 
     
