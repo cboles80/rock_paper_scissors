@@ -8,27 +8,26 @@
 <body>
 
 <script>
-    console.log('Ready...');
-    let playerSelection = '';
-    let randomSelection = '';
-    let computerSelection = '';
-    let winner = '';
 
-    // function startGame() {
-    //     gameStatus = window.prompt("Would you like to play a game of Rock, Paper, Scissors? (Type y or n and Press Enter)");
-    //         if ((gameStatus != "y") && (gameStatus != "n")) {
-    //             alert("Please type y or n");
-    //             startGame();
-    //         }
-    //         else if (gameStatus == "n") {
-    //             alert("OK");
-    //         }
-    //         else
-    //             alert("Let's Play");
-    // }
+
+/* 
+Plays rock, paper, scissors against the computer.
+Modify the existing code to incorporate the below options.
+-Play a match of 5 rounds.
+-Keep and display score.
+*/
+
+
+    console.log('Ready...');
+    // let playerSelection = '';
+    // let randomSelection = '';
+    // let computerSelection = '';
+    // let winner = '';
+
+
 
     function getPlayerThrow() {
-        playerSelection = window.prompt("Please choose rock, paper, or scissors");
+        let playerSelection = window.prompt("Please choose rock, paper, or scissors");
         playerSelection = playerSelection.toLowerCase();
             if (playerSelection != "rock" && playerSelection != "scissors" && playerSelection != "paper") {
                 alert('That is not one of the choices.');
@@ -38,42 +37,31 @@
     }
 
     function getComputerThrow() {
-        randomSelection = Math.floor(Math.random() * 3);
+        const randomSelection = Math.floor(Math.random() * 3);
         arrayChoices = ["rock", "paper", "scissors"];
-        computerSelection = arrayChoices[randomSelection];
+        const computerSelection = arrayChoices[randomSelection];
         return computerSelection;
     }
 
-    function getWinner() {
+    function getWinner(playerSelection, computerSelection) {
         if (playerSelection == computerSelection) {
                 console.log("The game is a Tie!")
         } else if 
-            ((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "paper") || 
+            ((playerSelection == "rock" && computerSelection == "scissors") || 
+            (playerSelection == "scissors" && computerSelection == "paper") || 
             (playerSelection == "paper" && computerSelection == "rock"))
             {
-                console.log("You Win! " + playerSelection + " beats " + computerSelection);
+                console.log("You Win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) + " beats " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1));
         } else
-            console.log("You Lose");
-                
-        // playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
+            console.log("You Lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) + " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
     }
 
-    // function playGame(playerSelection, computerSelection) {
-    //     playerThrow = getPlayerThrow();
-    //     alert(playerThrow);
-    //     computerThrow = getComputerThrow();
-    //     winner = getWinner();
-    // }
-
-    // startGame();
-    getPlayerThrow();
-    console.log(playerSelection)
-    getComputerThrow();
-    console.log(computerSelection);
-    getWinner(playerSelection, computerSelection);
-    // playGame()
-
-
+    let myPlayerThrow = getPlayerThrow();
+    console.log("You chose " + myPlayerThrow.toUpperCase())
+    let myComputerThrow = getComputerThrow();
+    console.log("The computer chose " + myComputerThrow.toUpperCase());
+    let myWinner = getWinner(myPlayerThrow, myComputerThrow);
+    console.log("Press F5 to play again");
     
 </script>
     
