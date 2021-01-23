@@ -19,7 +19,7 @@ Modify the existing code to incorporate the below options.
 
 
         console.log('Ready...');
-        const numGames = 1;
+        const numGames = 5;
         let numOfTieGames = 0;
         let numOfPlayerWins = 0;
         let numOfComputerWins = 0;
@@ -30,13 +30,13 @@ Modify the existing code to incorporate the below options.
             playerSelection = playerSelection.toLowerCase();
             if (playerSelection != "rock" && playerSelection != "scissors" && playerSelection != "paper") {
                 alert('That is not one of the choices.');
-                getPlayerThrow(myGameNumber);
+                getPlayerThrow();
             } else { 
                 return playerSelection;
             }
         }
 
-        function getComputerThrow() {
+        function computerPlay() {
             const randomSelection = Math.floor(Math.random() * 3);
             arrayChoices = ["rock", "paper", "scissors"];
             const computerSelection = arrayChoices[randomSelection];
@@ -44,8 +44,6 @@ Modify the existing code to incorporate the below options.
         }
 
         function getWinner(playerSelection, computerSelection) {
-            //0=Tie, -1=Player, 1=Computer
-            let myGameWinner = 0;
             if (playerSelection == computerSelection) {
                 console.log("The game is a Tie!");
                 numOfTieGames++;
@@ -55,70 +53,30 @@ Modify the existing code to incorporate the below options.
                 console.log("You Win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
                     " beats " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1));
                 numOfPlayerWins++;
-                myGameWinner = -1;
             } else {
                 console.log("You Lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
                     " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
                 numOfComputerWins++;
-                myGameWinner = 1;
             }
-            return myGameWinner;
         }
 
-        function updateMatchScore(thisMatchScore, thisWinner) {
-            console.log('Update Match Score');
-            console.log(thisMatchScore[0]);
-            console.log('thisWinner is; ', thisWinner);
-            let myWins = '';
-            switch (thisWinner) {
-                case -1: 
-                //Increment Player win by 1
-                    myWins = thisMatchScore[0];
-                    console.log('myWins: ', myWins);
-                    thisMatchScore[0] = myWins++;
-                    console.log('myWins: ', myWins);
-                    console.log('Player Score: ', + thisMatchScore[0]);
-                    break;
-                
-                case 0: 
-                //Increment Ties by 1
-                    myWins = thisMatchScore[1];
-                    console.log('myWins: ', myWins);
-                    thisMatchScore[1] = myWins++;
-                    console.log('myWins: ', myWins);
-                    console.log('Ties: ', + thisMatchScore[1]);
-                    break;
-                
-                case 1: 
-                //Increment Computer win by 1
-                    myWins = thisMatchScore[2];
-                    console.log('myWins: ', myWins);
-                    thisMatchScore[2] = myWins++;
-                    console.log('myWins: ', myWins);
-                    console.log('Computer Score: ', + thisMatchScore[2]);
-                    break;
-            }
-            return thisMatchScore;
-        }
+        function game(matchGames) {
 
-        function playMatch(matchGames) {
-            let arMatchScore = [0, 0, 0];
             for (let i = 1; i <= matchGames; i++) {
                 //Passing "i" because we used the game number in the prompt
                 let myPlayerThrow = getPlayerThrow(i);
                 console.log(myPlayerThrow);
                 console.log("You chose " + myPlayerThrow.toUpperCase());
-                let myComputerThrow = getComputerThrow();
+                let myComputerThrow = computerPlay();
                 console.log("The computer chose " + myComputerThrow.toUpperCase());
                 let myWinner = getWinner(myPlayerThrow, myComputerThrow);
-                arMatchScore = updateMatchScore(arMatchScore, myWinner);
             }
-            console.log('Tie Games: ' + numOfTieGames + ' / ' + arMatchScore[1]);
-            console.log('Computer Games Won: ' + numOfComputerWins + ' / ' + arMatchScore[2]);
-            console.log('Player Games Won: ' + numOfPlayerWins + ' / ' + arMatchScore[0]);
+            console.log('Tie Games: ' + numOfTieGames);
+            console.log('Computer Games Won: ' + numOfComputerWins);
+            console.log('Player Games Won: ' + numOfPlayerWins);
         }
 
-        playMatch(numGames);
+        game(numGames);
     </script>
 
 </body>
