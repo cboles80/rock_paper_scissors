@@ -5,79 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game - Rock, Paper, Scissors</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <main id="main">
+        <h1>Rock, Paper, Scissors</h1>
+        <p>Please click on your choice:</p>
+        <button class="rock">
+            <img src="img/rock.jpg">
+        </button>
+        <button class="paper">
+            <img src="img/paper.jpg">
+        </button>
+        <button class="scissors">
+            <img src="img/scissors.jpg">
+        </button>
+    </main>
+    <aside>
+        <table>
+            <tr>
+                <td>Player Wins</th>                
+                <td class="playerWins"></td>
+            </tr>
+            <tr>
+                <th>Computer Wins</th>
+                <td class="computerWins"></td>                
+            </tr>
+            <tr>
+                <td>Ties</td>
+                <td class="ties"></td>
+            </tr>
+        </table>
+        <p class="gamewinner"></p>
+    </aside>
 
-    <script>
-        /* 
-Plays rock, paper, scissors against the computer.
-Modify the existing code to incorporate the below options.
--Play a match of 5 rounds.
--Keep and display score.
-*/
+<script src="main.js">
 
-
-        console.log('Ready...');
-        const numGames = 5;
-        let numOfTieGames = 0;
-        let numOfPlayerWins = 0;
-        let numOfComputerWins = 0;
-
-
-        function getPlayerThrow(myGameNumber) {
-            let playerSelection = window.prompt("GAME " + myGameNumber + "    Please choose rock, paper, or scissors:");
-            playerSelection = playerSelection.toLowerCase();
-            if (playerSelection != "rock" && playerSelection != "scissors" && playerSelection != "paper") {
-                alert('That is not one of the choices.');
-                getPlayerThrow();
-            } else { 
-                return playerSelection;
-            }
-        }
-
-        function computerPlay() {
-            const randomSelection = Math.floor(Math.random() * 3);
-            arrayChoices = ["rock", "paper", "scissors"];
-            const computerSelection = arrayChoices[randomSelection];
-            return computerSelection;
-        }
-
-        function getWinner(playerSelection, computerSelection) {
-            if (playerSelection == computerSelection) {
-                console.log("The game is a Tie!");
-                numOfTieGames++;
-            } else if ((playerSelection == "rock" && computerSelection == "scissors") ||
-                (playerSelection == "scissors" && computerSelection == "paper") ||
-                (playerSelection == "paper" && computerSelection == "rock")) {
-                console.log("You Win! " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1) +
-                    " beats " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1));
-                numOfPlayerWins++;
-            } else {
-                console.log("You Lose! " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1) +
-                    " beats " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1));
-                numOfComputerWins++;
-            }
-        }
-
-        function game(matchGames) {
-
-            for (let i = 1; i <= matchGames; i++) {
-                //Passing "i" because we used the game number in the prompt
-                let myPlayerThrow = getPlayerThrow(i);
-                console.log(myPlayerThrow);
-                console.log("You chose " + myPlayerThrow.toUpperCase());
-                let myComputerThrow = computerPlay();
-                console.log("The computer chose " + myComputerThrow.toUpperCase());
-                let myWinner = getWinner(myPlayerThrow, myComputerThrow);
-            }
-            console.log('Tie Games: ' + numOfTieGames);
-            console.log('Computer Games Won: ' + numOfComputerWins);
-            console.log('Player Games Won: ' + numOfPlayerWins);
-        }
-
-        game(numGames);
-    </script>
+</script>
 
 </body>
 

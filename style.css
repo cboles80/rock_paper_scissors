@@ -1,0 +1,55 @@
+*{
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 18px;
+    color: #eee;
+    background-color: #111;
+}
+
+body{
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    place-content: center;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main, aside{
+    text-align: center;
+}
+
+td {
+    border: 1.5px solid #eee;
+}
+
+img{
+    height: 10em;
+    width: 12em;
+}
+
+button{
+    margin: 2em;
+    background-color: black;
+    border: solid 3px transparent;
+}
+
+button:hover {
+    border-color: red;
+}
+
+.playerSelection{
+    border-color: red;
+}
+
+.computerSelection{
+    border-color: blue;
+}
+
+.tieSelection{
+    border-top-color: red;
+    border-bottom-color: red;
+    border-left-color: blue;
+    border-right-color: blue; 
+}
