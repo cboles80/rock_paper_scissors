@@ -5,12 +5,14 @@ const computerChoice = document.createElement('p');
 let numOfTieGames = 0;
 let numOfPlayerWins = 0;
 let numOfComputerWins = 0;
-let myWinner;
 const elPlayerWins = document.querySelector('.playerWins');
 const elComputerWins = document.querySelector('.computerWins');
 const elTies = document.querySelector('.ties');
 const gameWinner = document.querySelector('.gamewinner');
 const winMsg = ' has won the game!'
+const elRock = document.querySelector('.rock');
+const elPaper = document.querySelector('.paper');
+const elScissors = document.querySelector('.scissors');
 
 main.appendChild(playerChoice);
 main.appendChild(computerChoice);
@@ -49,7 +51,8 @@ function displayGameWinner(theWinner, playerSelection, computerSelection) {
 }
 
 function getWinner(playerSelection, computerSelection) {
-    // let myWinner; <-- Needed to make this global
+    let myWinner;
+    console.log('begin GetWinner');
     if (playerSelection == computerSelection) {        
         myWinner = 'Tie';        
         numOfTieGames++;
@@ -73,37 +76,82 @@ function computerPlay() {
 }
 
 async function displayFeedback(theWinner, playerSelection, computerSelection) {
+    console.log('displayFeedback');
     if (theWinner === 'Tie') {
         document.querySelector('button.' + playerSelection).classList.remove('playerSelection');
         document.querySelector('button.' + playerSelection).classList.remove('computerSelection');
         document.querySelector('button.' + playerSelection).classList.add('tieSelection');
     }
     displayGameWinner(theWinner, playerSelection, computerSelection);
-    await wait(2000); 
-    document.querySelector('button.' + playerSelection).classList.remove('playerSelection');
-    document.querySelector('button.' + computerSelection).classList.remove('computerSelection');
+    await wait(2000);
+    console.log('WAITING...');
+    // document.querySelector('button.' + playerSelection).classList.remove('playerSelection');
+    toggleBorder(playerSelection, 'player', 'off');
+    // document.querySelector('button.' + computerSelection).classList.remove('computerSelection');
+    toggleBorder(computerSelection, 'computer', 'off');
     document.querySelector('button.' + playerSelection).classList.remove('tieSelection');
+    console.log('turning Event Listener On');
+    toggleEventListener('on');
     return;
 }
 
+function toggleEventListener(status) {
+    console.log('begin toggleEventListener ', status);
+    if (status === 'off') {
+        buttons.forEach((button) => {
+            button.removeEventListener('click', handleClick);
+        });
+    } else {
+        buttons.forEach((button) => {
+            button.addEventListener('click', handleClick);
+        });
+    }
+}
+
+function toggleBorder(selection, who, status) {
+    if (status === 'on') {
+        switch(selection){
+            case 'rock':
+                elRock.classList.add(who + 'Selection');
+            case 'paper':
+                elPaper.classList.add(who + 'Selection');
+            case 'scissors':
+                elScissors.classList.add(who + 'Selection');
+        }
+    } else {
+        switch(selection){
+            case 'rock':
+                elRock.classList.remove(who + 'Selection');
+            case 'paper':
+                elPaper.classList.remove(who + 'Selection');
+            case 'scissors':
+                elScissors.classList.remove(who + 'Selection');
+        }
+    }
+}
+
+
 function handleClick(e){
     let playerSelection = e.target.parentElement.className;
-    document.querySelector('button.' + playerSelection).classList.add('playerSelection');
+    toggleEventListener('off');
+    // document.querySelector('button.' + playerSelection).classList.add('playerSelection');
+    toggleBorder(playerSelection,'player', 'on');
     computerSelection = computerPlay();
-    document.querySelector('button.' + computerSelection).classList.add('computerSelection');
+    // document.querySelector('button.' + computerSelection).classList.add('computerSelection');
+    toggleBorder(computerSelection, 'computer', 'on')
     let winner = getWinner(playerSelection, computerSelection);
     displayFeedback(winner, playerSelection, computerSelection);
+    // console.log('toggleEventListener back ON here');
     if ((numOfPlayerWins === 5) || (numOfComputerWins === 5)) {
-        gameWinner.textContent = myWinner + winMsg;
+        gameWinner.textContent = winner + winMsg;
         return;
     //Trying to figure out how to add a reload button after a winner is determined to start a new game.
     } 
+    // toggleEventListener('on');
 }
 
 const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-    button.addEventListener('click', handleClick);
-});
+toggleEventListener('on');
     
 // Plays rock, paper, scissors against the computer.
 // Modify the existing code to incorporate the below options.
