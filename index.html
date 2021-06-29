@@ -9,37 +9,42 @@
 </head>
 
 <body>
-    <main id="main">
-        <h1>Rock, Paper, Scissors</h1>
-        <p>Please click on your choice:</p>
-        <button class="rock">
-            <img src="img/rock.jpg">
-        </button>
-        <button class="paper">
-            <img src="img/paper.jpg">
-        </button>
-        <button class="scissors">
-            <img src="img/scissors.jpg">
-        </button>
-    </main>
-    <aside>
-        <table>
-            <tr>
-                <td>Player Wins</th>                
-                <td class="playerWins"></td>
-            </tr>
-            <tr>
-                <th>Computer Wins</th>
-                <td class="computerWins"></td>                
-            </tr>
-            <tr>
-                <td>Ties</td>
-                <td class="ties"></td>
-            </tr>
-        </table>
-        <p class="gamewinner"></p>
-    </aside>
-
+    <div class="game-winner me-hide" >
+        <p class="message"></p>
+        <button>Play Again</button>
+    </div>
+    <div class="game">
+        <main id="main">
+            <h1>Rock, Paper, Scissors</h1>
+            <p>Please click on your choice:</p>
+            <button class="rock">
+                <img src="img/rock.jpg">
+            </button>
+            <button class="paper">
+                <img src="img/paper.jpg">
+            </button>
+            <button class="scissors">
+                <img src="img/scissors.jpg">
+            </button>
+        </main>
+        <aside>
+            <table>
+                <tr>
+                    <td>Player Wins</th>                
+                    <td class="playerWins"></td>
+                </tr>
+                <tr>
+                    <th>Computer Wins</th>
+                    <td class="computerWins"></td>                
+                </tr>
+                <tr>
+                    <td>Ties</td>
+                    <td class="ties"></td>
+                </tr>
+            </table>
+            <p class="round-winner"></p>
+        </aside>
+    </div>
 <script src="main.js">
 
 </script>
