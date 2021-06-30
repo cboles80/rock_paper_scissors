@@ -26,7 +26,6 @@ const wait = (amount = 0) =>
 
 function displayGameWinner(winnerMessage) {
   elGame.classList.add('me-hide');
-  // elGameWinner.textContent = winnerMessage;
   elGameWinner.querySelector('.message').textContent = winnerMessage;
   elGameWinner.classList.remove('me-hide');
   
@@ -48,13 +47,11 @@ function displayRoundWinner(theWinner, playerSelection, computerSelection) {
     case "Player":
       p.textContent =
         "You Win! " + myPlayerSelection + " beats " + myComputerSelection;
-      console.log("Player Wins: " + numOfPlayerWins);
       elPlayerWins.innerText = numOfPlayerWins;
       break;
     case "Computer":
       p.textContent =
         "Computer Wins! " + myComputerSelection + " beats " + myPlayerSelection;
-      console.log("Computer Wins: " + numOfComputerWins);
       elComputerWins.innerText = numOfComputerWins;
       break;
     default:
@@ -64,8 +61,6 @@ function displayRoundWinner(theWinner, playerSelection, computerSelection) {
 
 function getWinner(playerSelection, computerSelection) {
   let myWinner;
-  console.log("begin GetWinner");
-  console.log(playerSelection, computerSelection);
   if (playerSelection == computerSelection) {
     myWinner = "Tie";
     numOfTieGames++;
@@ -91,7 +86,6 @@ function computerPlay() {
 }
 
 async function displayFeedback(theWinner, playerSelection, computerSelection) {
-  console.log("displayFeedback");
   if (theWinner === "Tie") {
     document
       .querySelector("button." + playerSelection)
@@ -105,15 +99,11 @@ async function displayFeedback(theWinner, playerSelection, computerSelection) {
   }
   displayRoundWinner(theWinner, playerSelection, computerSelection);
   await wait(2000);
-  console.log("WAITING...");
-  // document.querySelector('button.' + playerSelection).classList.remove('playerSelection');
   toggleBorder(playerSelection, "player", "off");
-  // document.querySelector('button.' + computerSelection).classList.remove('computerSelection');
   toggleBorder(computerSelection, "computer", "off");
   document
     .querySelector("button." + playerSelection)
     .classList.remove("tieSelection");
-  console.log("turning Event Listener On");
   toggleEventListener("on");
   return;
 }
@@ -132,7 +122,6 @@ function toggleEventListener(status) {
 }
 
 function toggleBorder(selection, who, status) {
-  console.log(who);
   if (status === "on") {
     switch (selection) {
       case "rock":
@@ -163,12 +152,10 @@ function toggleBorder(selection, who, status) {
 }
 
 function handleClick(e) {
-  console.log(e);
   let playerSelection = e.target.parentElement.className;
   toggleEventListener("off");
   toggleBorder(playerSelection, "player", "on");
   computerSelection = computerPlay();
-  console.log(computerSelection);
   toggleBorder(computerSelection, "computer", "on");
   let winner = getWinner(playerSelection, computerSelection);
   displayFeedback(winner, playerSelection, computerSelection);
@@ -177,7 +164,6 @@ function handleClick(e) {
     displayGameWinner(winnerMessage);
     return;
   }
-  // toggleEventListener('on');
 }
 
 const buttons = document.querySelectorAll("button");
