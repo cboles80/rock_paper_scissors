@@ -144,7 +144,6 @@ function toggleEventListener(status, theCallback) {
       });
     }
   } else if (theCallback === "handleGameRestart") {
-    console.log("else if");
     if (status === "off") {
       btnGameWinner.removeEventListener("click", handleGameRestart);
     } else {
